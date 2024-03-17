@@ -273,7 +273,7 @@ export const Navbar = () => {
               <DrawerOverlay />
               <DrawerContent
                 maxWidth="17rem"
-                backgroundColor={useColorModeValue("white", "#171717")}
+                backgroundColor={useColorModeValue("#ffffff", "#171717")}
                 pb={3}
               >
                 <DrawerHeader fontSize="3xl" mt={-1}>
