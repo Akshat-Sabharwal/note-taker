@@ -16,7 +16,7 @@ import { NoteModal } from "./components/NoteModal";
 import { Navbar } from "../../components/Navbar";
 import { NotesData } from "../../context/notesContext";
 import { useContext } from "react";
-import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 export const Dashboard = () => {
   const { notesData } = useContext(NotesData);
@@ -60,7 +60,7 @@ export const Dashboard = () => {
                 </Breadcrumb>
                 <Heading fontSize={isMobile ? "2rem" : "2.5rem"}>
                   Recents
-                </Heading>{" "}
+                </Heading>
               </>
             ) : (
               <>
