@@ -23,6 +23,7 @@ import {
   FormLabel,
   Button,
   FormErrorMessage,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { FaEllipsisVertical } from "react-icons/fa6";
@@ -32,6 +33,7 @@ import { NotesData } from "../../../context/notesContext";
 export const NoteModal = ({ heading, description, tag }) => {
   const navigate = useNavigate();
   const { notesData, setNotesData } = useContext(NotesData);
+  const isMobile = useBreakpointValue({ base: true, md: false });
   const note = notesData.find((item) => item.heading === heading);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isInvalid, setIsInvalid] = useState({
@@ -92,6 +94,7 @@ export const NoteModal = ({ heading, description, tag }) => {
           px={2}
           py={2}
           pb={5}
+          maxWidth={isMobile ? "85vw" : "30rem"}
         >
           <ModalHeader fontSize="2rem">Rename the Note</ModalHeader>
           <ModalCloseButton onClick={onClose} mt={5} mr={3} />

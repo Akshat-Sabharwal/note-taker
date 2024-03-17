@@ -100,7 +100,7 @@ export const Navbar = () => {
           px={2}
           py={2}
           pb={5}
-          maxWidth="85vw"
+          maxWidth={isMobile ? "85vw" : "30rem"}
         >
           <ModalHeader fontSize={isMobile ? "1.7rem" : "2rem"}>
             Create a Note
