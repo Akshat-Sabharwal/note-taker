@@ -4,7 +4,7 @@ import {
   Button,
   IconButton,
   chakra,
-  useColorMode,
+  useColorModeValue,
   theme,
   useDisclosure,
   Modal,
@@ -271,7 +271,11 @@ export const Navbar = () => {
               placement="right"
             >
               <DrawerOverlay />
-              <DrawerContent maxWidth="17rem" backgroundColor="#171717" pb={3}>
+              <DrawerContent
+                maxWidth="17rem"
+                backgroundColor={useColorModeValue("white", "#171717")}
+                pb={3}
+              >
                 <DrawerHeader fontSize="3xl" mt={-1}>
                   Noteum
                 </DrawerHeader>
