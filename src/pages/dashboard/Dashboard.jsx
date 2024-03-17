@@ -50,14 +50,14 @@ export const Dashboard = () => {
           >
             {isMobile ? (
               <>
-                <Breadcrumb separator={<ChevronLeftIcon />} fontSize="1.2rem">
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
-                  </BreadcrumbItem>
+                <Breadcrumb separator={<ChevronRightIcon />} fontSize="1.2rem">
                   <BreadcrumbItem>
                     <BreadcrumbLink href="/">Home</BreadcrumbLink>
                   </BreadcrumbItem>
-                </Breadcrumb>{" "}
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </Breadcrumb>
                 <Heading fontSize={isMobile ? "2rem" : "2.5rem"}>
                   Recents
                 </Heading>{" "}
