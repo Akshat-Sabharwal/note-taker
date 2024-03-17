@@ -4,6 +4,7 @@ import {
   Button,
   IconButton,
   chakra,
+  useColorMode,
   useColorModeValue,
   theme,
   useDisclosure,
@@ -36,7 +37,7 @@ import { IoIosReturnLeft } from "react-icons/io";
 import { RiMenu5Line } from "react-icons/ri";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
+import { useBreakpointValue } from "@chakra-ui/react";
 import { NotesData, NotesDataProvider } from "../context/notesContext";
 
 export const Navbar = () => {
@@ -287,6 +288,7 @@ export const Navbar = () => {
                     width="full"
                     height="full"
                     pt={2}
+                    gap={10}
                   >
                     <Flex
                       direction="column"
