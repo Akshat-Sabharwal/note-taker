@@ -33,7 +33,7 @@ import { NotesData } from "../../../context/notesContext";
 export const NoteModal = ({ heading, description, tag }) => {
   const navigate = useNavigate();
   const { notesData, setNotesData } = useContext(NotesData);
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue({ base: true, md: true, lg: false });
   const note = notesData.find((item) => item.heading === heading);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isInvalid, setIsInvalid] = useState({
@@ -79,10 +79,9 @@ export const NoteModal = ({ heading, description, tag }) => {
   };
 
   const deleteNote = () => {
-    setNotesData([
-      ...notesData.slice(0, notesData.indexOf(note)),
-      ...notesData.slice(notesData.indexOf(note), -1),
-    ]);
+    setNotesData((prevState) =>
+      prevState.filter((item) => item.heading !== note.heading)
+    );
   };
 
   return (
@@ -216,8 +215,8 @@ export const NoteModal = ({ heading, description, tag }) => {
         pb={6}
         gap={2}
         boxShadow="md"
-        maxWidth="35rem"
         backgroundColor={useColorModeValue("white", "whiteAlpha.200")}
+        width={["21rem", "minmax(20rem, 35rem)", "fit-content"]}
       >
         <Flex
           gap={10}
@@ -246,13 +245,7 @@ export const NoteModal = ({ heading, description, tag }) => {
               <Text
                 fontSize={["0.9rem", "1rem", "1.1rem"]}
                 color={useColorModeValue("blackAlpha.500", "whiteAlpha.500")}
-                maxWidth={{
-                  base: "20ch",
-                  sm: "25ch",
-                  md: "28ch",
-                  lg: "30ch",
-                  xl: "30ch",
-                }}
+                maxWidth="30ch"
               >
                 {description}
               </Text>

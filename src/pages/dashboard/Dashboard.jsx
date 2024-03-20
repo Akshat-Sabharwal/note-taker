@@ -21,6 +21,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 export const Dashboard = () => {
   const { notesData } = useContext(NotesData);
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const isTablet = useBreakpointValue({ base: true, md: true, lg: false });
   const { toggleColorMode } = useColorMode();
 
   return (
@@ -32,7 +33,7 @@ export const Dashboard = () => {
         <Flex
           flexDirection="column"
           justify="flex-start"
-          align="flex-start"
+          align="center"
           gap={[4, 5, 8]}
           ml={isMobile ? 0 : "5.5rem"}
           px={isMobile ? 0 : "0.5rem"}
@@ -44,7 +45,7 @@ export const Dashboard = () => {
             justify="space-between"
             direction={["column", "column", "row"]}
             gap="1.5rem"
-            px={["2rem", "2.5rem", "3rem"]}
+            px={["1.2rem", "2.5rem", "3rem"]}
             py="0.7rem"
             mt={isMobile ? "6rem" : "2rem"}
           >
@@ -79,29 +80,39 @@ export const Dashboard = () => {
             )}
           </Flex>
 
-          <Grid
-            w="full"
-            px={["2rem", "2.5rem", "3rem"]}
-            mb="3rem"
-            templateColumns={[
-              "repeat(1, minmax(15rem, 1fr))",
-              "repeat(2, minmax(20rem, 1fr))",
-              "repeat(3, minmax(28rem, 1fr))",
-            ]}
-            gap={["1.5rem", "2.5rem", "3.5rem"]}
-          >
-            {notesData.length !== 0
-              ? notesData.map((item) => (
-                  <GridItem>
+          {isTablet ? (
+            <Flex
+              wrap="wrap"
+              justify="flex-start"
+              align="center"
+              w="full"
+              mb={10}
+              mx={10}
+              gap={["1.5rem", "2rem", "2.5rem"]}
+            >
+              {notesData.length !== 0
+                ? notesData.map((item) => (
                     <NoteModal
                       heading={item.heading}
                       description={item.description}
                       tag={item.tag}
                     />
-                  </GridItem>
-                ))
-              : null}
-          </Grid>
+                  ))
+                : null}
+            </Flex>
+          ) : (
+            <Flex gap={10} w="full" mb="3rem" px="3rem" wrap="wrap">
+              {notesData.length !== 0
+                ? notesData.map((item) => (
+                    <NoteModal
+                      heading={item.heading}
+                      description={item.description}
+                      tag={item.tag}
+                    />
+                  ))
+                : null}
+            </Flex>
+          )}
         </Flex>
       </chakra.div>
     </>
