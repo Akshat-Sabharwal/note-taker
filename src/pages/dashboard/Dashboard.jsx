@@ -28,6 +28,7 @@ export const Dashboard = () => {
     <>
       <chakra.div
         backgroundColor={useColorModeValue("white", "blackAlpha.800")}
+        overflowX="hidden"
       >
         <Navbar />
         <Flex

@@ -128,6 +128,7 @@ export const Navbar = () => {
                     type="text"
                     placeholder="Grocery list"
                     width="full"
+                    maxLength={30}
                     value={formData.heading}
                     onChange={(e) => {
                       setFormData({ ...formData, heading: e.target.value });
@@ -139,7 +140,7 @@ export const Navbar = () => {
                   />
                   {isInvalid.heading && (
                     <FormErrorMessage>
-                      The label must contain atleast a character
+                      The label character length must be between 1-30
                     </FormErrorMessage>
                   )}
                 </FormControl>
@@ -172,6 +173,7 @@ export const Navbar = () => {
                     placeholder="Basic Needs"
                     width="full"
                     value={formData.tag}
+                    maxLength={20}
                     onChange={(e) => {
                       setFormData({ ...formData, tag: e.target.value });
                       setIsInvalid({
@@ -182,7 +184,7 @@ export const Navbar = () => {
                   />
                   {isInvalid.tag && (
                     <FormErrorMessage>
-                      The tag must contain atleast a character
+                      The tag character length must be between 1-20
                     </FormErrorMessage>
                   )}
                 </FormControl>

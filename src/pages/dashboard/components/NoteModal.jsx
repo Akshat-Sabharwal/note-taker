@@ -119,6 +119,7 @@ export const NoteModal = ({ heading, description, tag }) => {
                     placeholder="Grocery list"
                     width="full"
                     value={formData.heading}
+                    maxLength={30}
                     onChange={(e) => {
                       setFormData({ ...formData, heading: e.target.value });
                       setIsInvalid({
@@ -129,7 +130,7 @@ export const NoteModal = ({ heading, description, tag }) => {
                   />
                   {isInvalid.heading && (
                     <FormErrorMessage>
-                      The label must contain atleast a character
+                      The label character length must be between 1-30
                     </FormErrorMessage>
                   )}
                 </FormControl>
@@ -139,6 +140,7 @@ export const NoteModal = ({ heading, description, tag }) => {
                     type="text"
                     placeholder="All of it to be bought by tomorrow "
                     width="full"
+                    maxLength={40}
                     value={formData.description}
                     onChange={(e) => {
                       setFormData({ ...formData, description: e.target.value });
@@ -150,7 +152,7 @@ export const NoteModal = ({ heading, description, tag }) => {
                   />
                   {isInvalid.description && (
                     <FormErrorMessage>
-                      The description must contain atleast a character
+                      The description character length must be between 1-40
                     </FormErrorMessage>
                   )}
                 </FormControl>
@@ -160,6 +162,7 @@ export const NoteModal = ({ heading, description, tag }) => {
                     type="text"
                     placeholder="Basic Needs"
                     width="full"
+                    maxLength={20}
                     value={formData.tag}
                     onChange={(e) => {
                       setFormData({ ...formData, tag: e.target.value });
@@ -171,7 +174,7 @@ export const NoteModal = ({ heading, description, tag }) => {
                   />
                   {isInvalid.tag && (
                     <FormErrorMessage>
-                      The tag must contain atleast a character
+                      The tag character length must be between 1-20
                     </FormErrorMessage>
                   )}
                 </FormControl>
