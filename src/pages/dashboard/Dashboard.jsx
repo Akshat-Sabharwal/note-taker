@@ -83,7 +83,7 @@ export const Dashboard = () => {
 
           {isTablet ? (
             <Flex
-              wrap="wrap"
+              direction="column"
               justify="flex-start"
               align="center"
               w="full"
