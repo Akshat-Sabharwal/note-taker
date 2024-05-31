@@ -289,7 +289,9 @@ export const Home = () => {
                 backgroundColor: "whiteAlpha.800",
               }}
               fontSize={["1.2rem", "1.4rem", "1.6rem"]}
-              onClick={() => navigate("/")}
+              onClick={() =>
+                (window.location.href = "https://vercel.com/vicuise/noteum")
+              }
             >
               Vercel
             </Button>
@@ -306,7 +308,7 @@ export const Home = () => {
               fontSize={["1.2rem", "1.4rem", "1.6rem"]}
               onClick={() =>
                 (window.location.href =
-                  "https://github.com/Akshat-Sabharwal/note-taker")
+                  "https://github.com/Akshat-Sabharwal/noteum")
               }
             >
               Github
