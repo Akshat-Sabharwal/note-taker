@@ -1,0 +1,27 @@
+*::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  margin-block: -10px;
+}
+
+*::-webkit-scrollbar-track {
+  padding: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #424242;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+*::-webkit-resizer {
+  display: none;
+}
+
+* {
+  transition: 0.2s;
+}
