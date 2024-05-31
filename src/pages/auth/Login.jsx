@@ -69,7 +69,7 @@ export const Login = () => {
             });
             setBuffer(false);
             localStorage.setItem("auth", true);
-            navigate("/notes");
+            navigate("/dashboard");
           });
     });
   };
