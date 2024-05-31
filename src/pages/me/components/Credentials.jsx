@@ -80,7 +80,12 @@ const PasswordModal = ({ onClose, isOpen }) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        bgColor={useColorModeValue("white", "blackAlpha.700")}
+        color={useColorModeValue("blackAlpha.800", "white")}
+      >
         <ModalOverlay />
 
         <ModalContent px={2}>
