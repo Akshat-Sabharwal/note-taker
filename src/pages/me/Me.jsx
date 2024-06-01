@@ -41,6 +41,7 @@ export const Me = () => {
     <chakra.div
       backgroundColor={useColorModeValue("white", "blackAlpha.700")}
       overflowX="hidden"
+      minH="100vh"
     >
       <Navbar />
       <Box maxW="90vw">
