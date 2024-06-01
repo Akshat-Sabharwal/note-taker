@@ -65,7 +65,12 @@ export const DesktopNavbar = ({ navbarItems }) => {
         transitionDuration="0.3s"
         zIndex={999}
       >
-        <HStack gap={3} align="center" justify="flex-start" ml={1}>
+        <HStack
+          gap={3}
+          align="center"
+          justify="flex-start"
+          ml={expanded ? 1 : 0}
+        >
           <IconButton
             icon={<RiMenuFill />}
             fontSize="1.5rem"
