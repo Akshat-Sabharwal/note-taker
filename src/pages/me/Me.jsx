@@ -54,7 +54,7 @@ export const Me = () => {
           pl="3.5rem"
           py={7}
         >
-          <Heading>Profile</Heading>
+          <Heading mt={1}>Profile</Heading>
           {buffer ? (
             <MeSkeleton />
           ) : (

@@ -18,7 +18,7 @@ const NavbarItem = ({ icon, text, expanded, onClick }) => {
     <ListItem
       w="full"
       px={2}
-      pl={3}
+      pl={expanded ? 3 : 2}
       py={1}
       borderRadius="md"
       _hover={{
