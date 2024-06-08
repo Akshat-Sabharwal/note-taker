@@ -109,14 +109,14 @@ export const Home = () => {
         >
           <VStack gap={{ base: 2, lg: 1 }}>
             <Heading
-              fontSize={{ base: "2.2rem", lg: "4rem" }}
+              fontSize={{ base: "2.4rem", lg: "4rem" }}
               color={useColorModeValue("blackAlpha.900", "whiteAlpha.900")}
               lineHeight={{ base: "120%", lg: null }}
             >
               Take notes on the go
             </Heading>
             <Text
-              fontSize={["1rem", "1.4rem", "1.6rem"]}
+              fontSize={["1.1rem", "1.4rem", "1.6rem"]}
               maxW={{ base: "30ch", lg: "fit-content" }}
               lineHeight={{ base: "120%", lg: "normal" }}
               color={useColorModeValue("blackAlpha.600", "whiteAlpha.500")}
@@ -227,14 +227,14 @@ export const Home = () => {
             "blackAlpha.900",
             "whiteAlpha.100"
           )}
-          w="clamp(18rem, 60%, 50rem)"
-          px={{ base: 4, lg: 10 }}
-          py={{ base: 4, lg: 8 }}
+          w="clamp(18rem, 90%, 50rem)"
+          px={{ base: 5, lg: 10 }}
+          py={{ base: 5, lg: 8 }}
           gap={[0, 4, 7]}
         >
           <VStack align="flex-start">
             <Text
-              fontSize={["1.3rem", "2rem", "2.5rem"]}
+              fontSize={["1.4rem", "2rem", "2.5rem"]}
               color={useColorModeValue("white", "whiteAlpha.900")}
             >
               Begin your journey with Noteum
@@ -269,6 +269,7 @@ export const Home = () => {
         flexDirection={{ base: "column", lg: "row" }}
         align={{ base: "flex-start", lg: "center" }}
         p={{ base: 5, lg: 10 }}
+        pb={{ base: 8 }}
         mt={{ base: "5rem", md: "7rem" }}
         backgroundColor={useColorModeValue("blackAlpha.900", "whiteAlpha.100")}
         gap={["0.8rem", "2rem", "5rem"]}

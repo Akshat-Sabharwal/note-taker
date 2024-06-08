@@ -95,9 +95,9 @@ export const Signup = () => {
         <Flex
           justify={{ base: "flex-start", lg: "center" }}
           align="center"
-          w={{ base: "90%", lg: "70%" }}
-          gap={{ base: "2.5rem", lg: "7rem" }}
-          mt={{ base: "2.5rem", lg: null }}
+          w={{ base: "35ch", lg: "70%" }}
+          gap={{ base: "3rem", lg: "7rem" }}
+          mt={{ base: "3.5rem", lg: null }}
           flexDirection={{ base: "column", lg: "row" }}
         >
           <Heading

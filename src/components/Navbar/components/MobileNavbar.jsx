@@ -102,7 +102,7 @@ export const MobileNavbar = ({ navbarItems }) => {
           <DrawerContent
             backdropFilter="blur(1rem)"
             backgroundColor="transparent"
-            maxWidth="15rem"
+            maxWidth="17rem"
             pb={3}
           >
             <DrawerHeader fontSize="1.6rem">Noteum</DrawerHeader>

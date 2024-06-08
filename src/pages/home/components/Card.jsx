@@ -24,7 +24,7 @@ export const SideCard = ({ icon, text }) => {
         p={3}
       />
       <Text
-        fontSize={{ base: "0.8rem", lg: "1.3rem" }}
+        fontSize={{ base: "0.9rem", lg: "1.3rem" }}
         mr={3}
         color={useColorModeValue("blackAlpha.800", "whiteAlpha.900")}
       >

@@ -89,6 +89,7 @@ const PasswordModal = ({ onClose, isOpen }) => {
         <ModalContent
           px={2}
           maxW="90vw"
+          mt="6rem"
           backgroundColor={useColorModeValue("white", "#191a1c")}
         >
           <ModalCloseButton mt={4} mr={4} />
@@ -187,7 +188,7 @@ const PasswordModal = ({ onClose, isOpen }) => {
               <Button
                 w="full"
                 fontSize="1.1rem"
-                my={4}
+                my={5}
                 bgColor={useColorModeValue("blackAlpha.800", "whiteAlpha.200")}
                 color="white"
                 _hover={{

@@ -66,7 +66,7 @@ export const NoteModal = ({ title, description, tags, slug }) => {
         pb={{ base: 5, lg: 6 }}
         gap={{ base: 1, lg: 2 }}
         h={{ base: "fit-content", lg: "10rem" }}
-        w="clamp(12rem, 100%, 20rem)"
+        w="clamp(12rem, 100%, 22.5rem)"
         boxShadow="md"
         backgroundColor={useColorModeValue("white", "whiteAlpha.200")}
       >
