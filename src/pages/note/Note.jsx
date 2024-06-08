@@ -77,7 +77,6 @@ const DesktopNote = ({ noteData, setNoteData }) => {
                   width="fit-content"
                   px={2}
                   py={1}
-                  pb={2}
                   mt={2}
                   fontSize="1rem"
                   backgroundColor={useColorModeValue(
@@ -212,7 +211,6 @@ const MobileNote = ({ noteData, setNoteData }) => {
               width="fit-content"
               px={2}
               py={1}
-              pb={2}
               mt={2}
               fontSize="1rem"
               backgroundColor={useColorModeValue(

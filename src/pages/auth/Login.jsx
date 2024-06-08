@@ -89,9 +89,9 @@ export const Login = () => {
           flexDirection={{ base: "column", lg: "row" }}
           justify={{ base: "flex-start", lg: "center" }}
           align="center"
-          w={{ base: "30ch", lg: "70%" }}
+          w={{ base: "35ch", lg: "70%" }}
           gap={{ base: "3rem", lg: "7rem" }}
-          mt={{ base: "3.5rem", lg: null }}
+          mt={{ base: "5rem", lg: null }}
         >
           <Heading
             textAlign="center"
@@ -125,7 +125,7 @@ export const Login = () => {
                     <Input
                       type="text"
                       placeholder="E-mail"
-                      fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                      fontSize={{ base: "1rem", lg: "1.1rem" }}
                       py={{ base: 3, lg: 5 }}
                       px={{ base: 3, lg: 4 }}
                       maxLength={40}
@@ -157,7 +157,7 @@ export const Login = () => {
                       <Input
                         type="password"
                         placeholder="Password"
-                        fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                        fontSize={{ base: "1rem", lg: "1.1rem" }}
                         py={{ base: 3, lg: 5 }}
                         px={{ base: 3, lg: 4 }}
                         value={formData.password}
@@ -228,7 +228,7 @@ export const Login = () => {
             <Button
               rightIcon={<ArrowForwardIcon />}
               variant="link"
-              fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+              fontSize={{ base: "1rem", lg: "1.1rem" }}
               onClick={() => navigate("/auth/signup")}
             >
               New to Noteum? Sign up here

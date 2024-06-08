@@ -97,7 +97,7 @@ export const Signup = () => {
           align="center"
           w={{ base: "35ch", lg: "70%" }}
           gap={{ base: "3rem", lg: "7rem" }}
-          mt={{ base: "3.5rem", lg: null }}
+          mt={{ base: "5rem", lg: null }}
           flexDirection={{ base: "column", lg: "row" }}
         >
           <Heading
@@ -132,7 +132,7 @@ export const Signup = () => {
                     <Input
                       type="text"
                       placeholder="Username"
-                      fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                      fontSize={{ base: "1rem", lg: "1.1rem" }}
                       py={{ base: 3, lg: 5 }}
                       px={{ base: 3, lg: 4 }}
                       value={formData.name}
@@ -164,7 +164,7 @@ export const Signup = () => {
                     <Input
                       type="text"
                       placeholder="E-mail"
-                      fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                      fontSize={{ base: "1rem", lg: "1.1rem" }}
                       py={{ base: 3, lg: 5 }}
                       px={{ base: 3, lg: 4 }}
                       maxLength={40}
@@ -195,7 +195,7 @@ export const Signup = () => {
                     <Input
                       type="password"
                       placeholder="Password"
-                      fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                      fontSize={{ base: "1rem", lg: "1.1rem" }}
                       py={{ base: 3, lg: 5 }}
                       px={{ base: 3, lg: 4 }}
                       value={formData.password}
@@ -251,7 +251,7 @@ export const Signup = () => {
             <Button
               rightIcon={<ArrowForwardIcon />}
               variant="link"
-              fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+              fontSize={{ base: "1rem", lg: "1.1rem" }}
               onClick={() => navigate("/auth/login")}
             >
               An existing user? Login here
