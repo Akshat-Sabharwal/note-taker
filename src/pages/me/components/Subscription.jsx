@@ -9,7 +9,6 @@ import {
   Heading,
   HStack,
   VStack,
-  Skeleton,
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { User } from "../../../context/user";
@@ -28,7 +27,7 @@ export const Subscription = () => {
           Subscription
         </Heading>
         <VStack w="full" justify="flex-start" align="flex-start" gap={4} mb={7}>
-          <HStack gap={10}>
+          <HStack gap={{ base: 4, md: 10 }}>
             <Text fontSize="1.1rem" minW="10rem">
               Active Subscription
             </Text>
@@ -38,7 +37,7 @@ export const Subscription = () => {
             </Badge>
           </HStack>
           <Divider w="90%" />
-          <HStack gap={10}>
+          <HStack gap={{ base: 4, md: 10 }}>
             <Text fontSize="1.1rem" minW="10rem">
               Notes allowed
             </Text>
@@ -47,7 +46,7 @@ export const Subscription = () => {
             </Badge>
           </HStack>
           <Divider w="90%" />
-          <HStack gap={10}>
+          <HStack gap={{ base: 4, md: 10 }}>
             <Text fontSize="1.1rem" minW="10rem">
               Price
             </Text>

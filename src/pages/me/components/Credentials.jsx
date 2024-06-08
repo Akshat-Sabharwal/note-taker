@@ -21,12 +21,12 @@ import {
   InputGroup,
   InputRightAddon,
   ModalContent,
-  IconButton,
   Icon,
   FormErrorMessage,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { User } from "../../../context/user";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { fetchResponse } from "../../../utils/fetchResponse";
 
@@ -42,14 +42,12 @@ const PasswordModal = ({ onClose, isOpen }) => {
 
   const [isInvalid, setIsInvalid] = useState(false);
 
+  useEffect(() => {
+    validate();
+  }, [formData]);
+
   const resetPassword = async () => {
     setBuffer(true);
-
-    validate();
-
-    if (isInvalid) {
-      return;
-    }
 
     await fetchResponse("me", "PATCH", {
       password: formData.password,
@@ -88,7 +86,11 @@ const PasswordModal = ({ onClose, isOpen }) => {
       >
         <ModalOverlay />
 
-        <ModalContent px={2}>
+        <ModalContent
+          px={2}
+          maxW="90vw"
+          backgroundColor={useColorModeValue("white", "#191a1c")}
+        >
           <ModalCloseButton mt={4} mr={4} />
           <ModalHeader fontSize="1.8rem">Reset Password</ModalHeader>
           <ModalBody>
@@ -211,6 +213,7 @@ const PasswordModal = ({ onClose, isOpen }) => {
 
 export const Credentials = () => {
   const { user, setUser } = useContext(User);
+  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast({ duration: 3000, isClosable: true });
 
@@ -236,58 +239,130 @@ export const Credentials = () => {
   return (
     <>
       <PasswordModal onClose={onClose} isOpen={isOpen} />
-      <Card
-        w="full"
-        minW="max-content"
-        bgColor={useColorModeValue("white", "whiteAlpha.200")}
-      >
-        <CardBody w="full" px={8} p={7} pb={8}>
+      <Card w="100%" bgColor={useColorModeValue("white", "whiteAlpha.200")}>
+        <CardBody w="full" px={8} p={{ base: 6, md: 8 }} pb={8}>
           <Heading mb={8} fontSize="1.8rem">
             Credentials
           </Heading>
           <VStack w="full" justify="flex-start" align="flex-start" gap={5}>
-            <HStack justify="space-between" align="center" gap="3.5rem">
-              <Text fontSize="1.1rem" minW="6rem">
-                Username
-              </Text>
-              <FormControl>
-                <Input
-                  type="text"
-                  value={user.name}
-                  onChange={(e) => setUser({ ...user, name: e.target.value })}
-                  onKeyDown={(e) => (e.key === "Enter" ? updateUser() : null)}
-                  maxW="15rem"
-                  _focus={{ boxShadow: "none", borderColor: "whiteAlpha.500" }}
-                />
-              </FormControl>
-            </HStack>
-            <Divider w="90%" />
-            <HStack justify="space-between" align="center" gap="3.5rem">
-              <Text minW="6rem" fontSize="1.1rem">
-                E-mail
-              </Text>
-              <FormControl>
-                <Input
-                  type="text"
-                  value={user.email}
-                  disabled={true}
-                  maxW="15rem"
-                />
-              </FormControl>
-            </HStack>
-            <Divider w="90%" />
-            <Button
-              mt={3}
-              minW="fit-content"
-              bgColor={useColorModeValue("blackAlpha.800", "whiteAlpha.200")}
-              color="whiteAlpha.900"
-              _hover={{
-                bgColor: useColorModeValue("blackAlpha.900", "whiteAlpha.100"),
-              }}
-              onClick={onOpen}
-            >
-              Reset Passsword
-            </Button>
+            {isMobile ? (
+              <>
+                <VStack align="flex-start">
+                  <Text fontSize={{ base: "1rem", lg: "1.1rem" }} minW="6rem">
+                    Username
+                  </Text>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      value={user.name}
+                      onChange={(e) =>
+                        setUser({ ...user, name: e.target.value })
+                      }
+                      onKeyDown={(e) =>
+                        e.key === "Enter" ? updateUser() : null
+                      }
+                      maxW="15rem"
+                      _focus={{
+                        boxShadow: "none",
+                        borderColor: useColorModeValue(
+                          "blackAlpha.500",
+                          "whiteAlpha.500"
+                        ),
+                      }}
+                    />
+                  </FormControl>
+                </VStack>
+                <VStack align="flex-start">
+                  <Text minW="6rem" fontSize={{ base: "1rem", lg: "1.1rem" }}>
+                    E-mail
+                  </Text>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      value={user.email}
+                      disabled={true}
+                      maxW="15rem"
+                    />
+                  </FormControl>
+                </VStack>
+                <Button
+                  mt={3}
+                  minW="fit-content"
+                  bgColor={useColorModeValue(
+                    "blackAlpha.800",
+                    "whiteAlpha.200"
+                  )}
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: useColorModeValue(
+                      "blackAlpha.900",
+                      "whiteAlpha.100"
+                    ),
+                  }}
+                  onClick={onOpen}
+                >
+                  Reset Passsword
+                </Button>
+              </>
+            ) : (
+              <>
+                <HStack justify="space-between" align="center" gap="3.5rem">
+                  <Text fontSize="1.1rem" minW="6rem">
+                    Username
+                  </Text>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      value={user.name}
+                      onChange={(e) =>
+                        setUser({ ...user, name: e.target.value })
+                      }
+                      onKeyDown={(e) =>
+                        e.key === "Enter" ? updateUser() : null
+                      }
+                      maxW="15rem"
+                      _focus={{
+                        boxShadow: "none",
+                        borderColor: "whiteAlpha.500",
+                      }}
+                    />
+                  </FormControl>
+                </HStack>
+                <Divider w="90%" />
+                <HStack justify="space-between" align="center" gap="3.5rem">
+                  <Text minW="6rem" fontSize="1.1rem">
+                    E-mail
+                  </Text>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      value={user.email}
+                      disabled={true}
+                      maxW="15rem"
+                    />
+                  </FormControl>
+                </HStack>
+                <Divider w="90%" />
+                <Button
+                  mt={3}
+                  minW="fit-content"
+                  bgColor={useColorModeValue(
+                    "blackAlpha.800",
+                    "whiteAlpha.200"
+                  )}
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: useColorModeValue(
+                      "blackAlpha.900",
+                      "whiteAlpha.100"
+                    ),
+                  }}
+                  onClick={onOpen}
+                >
+                  Reset Passsword
+                </Button>
+              </>
+            )}
           </VStack>
         </CardBody>
       </Card>

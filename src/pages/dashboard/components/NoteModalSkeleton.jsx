@@ -9,8 +9,8 @@ import {
 export const NoteModalSkeleton = () => {
   return (
     <Card
-      h="10rem"
-      w="20rem"
+      h={{ base: "fit-content", lg: "10rem" }}
+      w={{ base: "full", md: "20rem" }}
       p={5}
       boxShadow="md"
       backgroundColor={useColorModeValue("white", "whiteAlpha.200")}

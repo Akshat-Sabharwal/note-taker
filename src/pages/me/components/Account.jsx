@@ -1,5 +1,6 @@
 import {
   useColorModeValue,
+  useBreakpointValue,
   useToast,
   Card,
   CardBody,
@@ -17,6 +18,8 @@ import { useNavigate } from "react-router-dom";
 
 export const Account = () => {
   const navigate = useNavigate();
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const { setUser } = useContext(User);
   const toast = useToast({ isClosable: true, duration: 3000 });
   const [deleteBuffer, setDeleteBuffer] = useState(false);
@@ -49,43 +52,103 @@ export const Account = () => {
         <Heading mb={8} fontSize="1.8rem">
           Account
         </Heading>
-        <VStack w="full" justify="flex-start" align="flex-start" gap={3}>
-          <HStack align="center" justify="flex-start" gap="3.5rem">
-            <Text minW="10rem" fontSize="1.1rem">
-              Sign out of account
-            </Text>
-            <Button
-              mt={3}
-              minW="fit-content"
-              bgColor={useColorModeValue("blackAlpha.800", "whiteAlpha.200")}
-              color="whiteAlpha.900"
-              _hover={{
-                bgColor: useColorModeValue("blackAlpha.900", "whiteAlpha.100"),
-              }}
-              onClick={async () => await signOut()}
-            >
-              Sign out
-            </Button>
-          </HStack>
-          <Divider w="90%" />
-          <HStack align="center" justify="flex-start" gap="3.5rem">
-            <Text minW="10rem" fontSize="1.1rem">
-              Delete account
-            </Text>
-            <Button
-              mt={3}
-              minW="fit-content"
-              bgColor="red.600"
-              color="whiteAlpha.900"
-              _hover={{
-                bgColor: "red.700",
-              }}
-              isLoading={deleteBuffer}
-              onClick={async () => await deleteAccount()}
-            >
-              Delete Account
-            </Button>
-          </HStack>
+
+        <VStack
+          w="full"
+          justify="flex-start"
+          align="flex-start"
+          gap={{ base: 6, md: 3 }}
+        >
+          {isMobile ? (
+            <>
+              <VStack w="full" align="flex-start" gap={0}>
+                <Text minW="10rem" fontSize="1.1rem">
+                  Sign out of account
+                </Text>
+                <Button
+                  mt={3}
+                  minW="fit-content"
+                  bgColor={useColorModeValue(
+                    "blackAlpha.800",
+                    "whiteAlpha.200"
+                  )}
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: useColorModeValue(
+                      "blackAlpha.900",
+                      "whiteAlpha.100"
+                    ),
+                  }}
+                  onClick={async () => await signOut()}
+                >
+                  Sign out
+                </Button>
+              </VStack>
+              <VStack w="full" align="flex-start" gap={0}>
+                <Text minW="10rem" fontSize="1.1rem">
+                  Delete account
+                </Text>
+                <Button
+                  mt={3}
+                  minW="fit-content"
+                  bgColor="red.600"
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: "red.700",
+                  }}
+                  isLoading={deleteBuffer}
+                  onClick={async () => await deleteAccount()}
+                >
+                  Delete Account
+                </Button>
+              </VStack>
+            </>
+          ) : (
+            <>
+              <HStack align="center" justify="flex-start" gap="3.5rem">
+                <Text minW="10rem" fontSize="1.1rem">
+                  Sign out of account
+                </Text>
+                <Button
+                  mt={3}
+                  minW="fit-content"
+                  bgColor={useColorModeValue(
+                    "blackAlpha.800",
+                    "whiteAlpha.200"
+                  )}
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: useColorModeValue(
+                      "blackAlpha.900",
+                      "whiteAlpha.100"
+                    ),
+                  }}
+                  onClick={async () => await signOut()}
+                >
+                  Sign out
+                </Button>
+              </HStack>
+              <Divider w="90%" />
+              <HStack align="center" justify="flex-start" gap="3.5rem">
+                <Text minW="10rem" fontSize="1.1rem">
+                  Delete account
+                </Text>
+                <Button
+                  mt={3}
+                  minW="fit-content"
+                  bgColor="red.600"
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: "red.700",
+                  }}
+                  isLoading={deleteBuffer}
+                  onClick={async () => await deleteAccount()}
+                >
+                  Delete Account
+                </Button>
+              </HStack>
+            </>
+          )}
         </VStack>
       </CardBody>
     </Card>

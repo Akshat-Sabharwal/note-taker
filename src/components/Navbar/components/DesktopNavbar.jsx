@@ -1,17 +1,17 @@
 import {
   useColorModeValue,
   IconButton,
-  Text,
   Heading,
   VStack,
-  ListItem,
   List,
   HStack,
+  ListItem,
   Icon,
-  Tooltip,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const NavbarItem = ({ icon, text, expanded, onClick }) => {
   return (
@@ -46,6 +46,7 @@ const NavbarItem = ({ icon, text, expanded, onClick }) => {
 };
 
 export const DesktopNavbar = ({ navbarItems }) => {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -85,7 +86,12 @@ export const DesktopNavbar = ({ navbarItems }) => {
             onClick={() => setExpanded(!expanded)}
           />
           {expanded ? (
-            <Heading fontSize="1.8rem" mb="2px">
+            <Heading
+              fontSize="1.8rem"
+              mb="2px"
+              cursor="pointer"
+              onClick={() => navigate("/")}
+            >
               Noteum
             </Heading>
           ) : null}
@@ -134,194 +140,3 @@ export const DesktopNavbar = ({ navbarItems }) => {
     </>
   );
 };
-
-{
-  /* <chakra.span display="flex" flexDirection="row" gap="0.7rem">
-          <IconButton
-            icon={<RiMenu5Line />}
-            size="lg"
-            fontSize="2rem"
-            variant="ghost"
-            onClick={() => setNavbarIsOpen(!navbarIsOpen)}
-            _hover={{
-              backgroundColor: useColorModeValue(
-                "blackAlpha.300",
-                "whiteAlpha.300"
-              ),
-            }}
-          />
-          {navbarIsOpen ? (
-            <Heading fontSize="2rem" mt="3px">
-              Noteum
-            </Heading>
-          ) : null}
-        </chakra.span>
-        <Flex
-          justify="space-between"
-          align={navbarIsOpen ? "flex-start" : "center"}
-          direction="column"
-          height="full"
-          width="full"
-          gap="3rem"
-          pb={2}
-        >
-          <Flex
-            flexDirection="column"
-            justify="flex-start"
-            variant="ghost"
-            height="full"
-            width="full"
-            gap={5}
-          >
-            {navbarIsOpen ? (
-              <Button
-                leftIcon={<IoCreateOutline />}
-                size="lg"
-                fontSize="2rem"
-                pl={3}
-                gap="0.5rem"
-                width="full"
-                justifyContent="flex-start"
-                variant="ghost"
-                onClick={() => onModalOpen()}
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              >
-                <Text fontSize="1.35rem">Create note</Text>
-              </Button>
-            ) : (
-              <IconButton
-                icon={<IoCreateOutline />}
-                onClick={() => onModalOpen()}
-                size="lg"
-                fontSize="2rem"
-                variant="ghost"
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              />
-            )}
-            {navbarIsOpen ? (
-              <Button
-                leftIcon={<IoHomeOutline />}
-                onClick={() => navigate("/")}
-                size="lg"
-                fontSize="1.8rem"
-                pl={3}
-                gap="0.8rem"
-                width="full"
-                justifyContent="flex-start"
-                variant="ghost"
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              >
-                <Text fontSize="1.35rem">Home</Text>
-              </Button>
-            ) : (
-              <IconButton
-                icon={<IoHomeOutline />}
-                onClick={() => navigate("/")}
-                size="lg"
-                fontSize="1.8rem"
-                variant="ghost"
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              />
-            )}
-
-            {navbarIsOpen ? (
-              <Button
-                leftIcon={<IoIosReturnLeft />}
-                onClick={() => navigate(-1)}
-                size="lg"
-                fontSize="2.1rem"
-                pl={2}
-                gap="0.7rem"
-                width="full"
-                justifyContent="flex-start"
-                variant="ghost"
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              >
-                <Text fontSize="1.35rem">Return</Text>
-              </Button>
-            ) : (
-              <IconButton
-                icon={<IoIosReturnLeft />}
-                onClick={() => navigate(-1)}
-                size="lg"
-                fontSize="2rem"
-                variant="ghost"
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              />
-            )}
-          </Flex>
-          <VStack>
-            <Button onClick={() => navigate("/account")}>Profile</Button>
-            {navbarIsOpen ? (
-              <Button
-                leftIcon={useColorModeValue(
-                  <IoSunnyOutline />,
-                  <IoMoonOutline />
-                )}
-                size="lg"
-                fontSize="2rem"
-                py={6}
-                pl={3}
-                gap="0.5rem"
-                width="full"
-                justifyContent="flex-start"
-                variant="ghost"
-                onClick={toggleColorMode}
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              >
-                <Text fontSize="1.3rem">Switch Theme</Text>
-              </Button>
-            ) : (
-              <IconButton
-                icon={useColorModeValue(<IoSunnyOutline />, <IoMoonOutline />)}
-                onClick={toggleColorMode}
-                size="xl"
-                fontSize="2.1rem"
-                variant="ghost"
-                p={2}
-                _hover={{
-                  backgroundColor: useColorModeValue(
-                    "blackAlpha.300",
-                    "whiteAlpha.300"
-                  ),
-                }}
-              />
-            )}
-          </VStack>
-        </Flex> */
-}

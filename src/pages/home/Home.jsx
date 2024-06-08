@@ -20,69 +20,75 @@ import {
   Image,
   VStack,
   Card,
-  useColorMode,
   useColorModeValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import { SideCard } from "./components/Card";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
+const HomeNavbar = () => {
+  const { toggleColorMode } = useColorMode();
+
+  return (
+    <Flex
+      px={[4, 9, 9]}
+      py={{ base: 2, lg: 4 }}
+      justify="space-between"
+      align="center"
+      width="full"
+      position="fixed"
+      zIndex={10}
+      backdropFilter="blur(0.5rem)"
+      boxShadow="md"
+    >
+      <Heading
+        fontSize={["1.4rem", "1.7rem", "1.9rem"]}
+        color={useColorModeValue("blackAlpha.800", "whiteAlpha.900")}
+      >
+        Noteum
+      </Heading>
+      <HStack gap={[1, 2, 4]}>
+        <IconButton
+          icon={useColorModeValue(<CiLight />, <CiDark />)}
+          fontSize={{ base: "1.8rem", lg: "2.3rem" }}
+          p={{ base: 0, lg: 2 }}
+          variant="ghost"
+          _hover={{
+            backgroundColor: useColorModeValue(
+              "blackAlpha.300",
+              "whiteAlpha.300"
+            ),
+          }}
+          onClick={() => toggleColorMode()}
+        />
+        <IconButton
+          icon={<FaGithub />}
+          fontSize={{ base: "1.6rem", lg: "2.3rem" }}
+          p={{ base: 0, lg: 2 }}
+          variant="ghost"
+          _hover={{
+            backgroundColor: useColorModeValue(
+              "blackAlpha.300",
+              "whiteAlpha.300"
+            ),
+          }}
+          onClick={() =>
+            (window.location.href =
+              "https://github.com/Akshat-Sabharwal/noteum")
+          }
+        />
+      </HStack>
+    </Flex>
+  );
+};
+
 export const Home = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
 
   return (
     <chakra.div backgroundColor={useColorModeValue("white", "blackAlpha.700")}>
-      <Flex
-        px={[4, 9, 9]}
-        pr={{ base: 3 }}
-        py={[3, 6, 6]}
-        justify="space-between"
-        align="center"
-        width="full"
-        position="fixed"
-        zIndex={10}
-        backdropFilter="auto"
-        backdropBlur="0.5rem"
-        boxShadow="md"
-      >
-        <Heading color={useColorModeValue("blackAlpha.800", "whiteAlpha.900")}>
-          Noteum
-        </Heading>
-        <HStack gap={[1, 2, 4]}>
-          <IconButton
-            icon={useColorModeValue(<CiLight />, <CiDark />)}
-            size="lg"
-            fontSize="2.3rem"
-            onClick={() => toggleColorMode()}
-            p={2}
-            variant="ghost"
-            _hover={{
-              backgroundColor: useColorModeValue(
-                "blackAlpha.300",
-                "whiteAlpha.300"
-              ),
-            }}
-          />
-          <IconButton
-            icon={<FaGithub />}
-            onClick={() =>
-              (window.location.href =
-                "https://github.com/Akshat-Sabharwal/note-taker")
-            }
-            size="lg"
-            fontSize="2rem"
-            p={2}
-            variant="ghost"
-            _hover={{
-              backgroundColor: useColorModeValue(
-                "blackAlpha.300",
-                "whiteAlpha.300"
-              ),
-            }}
-          />
-        </HStack>
-      </Flex>
+      <HomeNavbar />
       <Flex
         backgroundImage={[
           useColorModeValue(bgPatternMobile, bgPatternMobileDark),
@@ -97,24 +103,27 @@ export const Home = () => {
       >
         <VStack
           textAlign="center"
-          gap={6}
+          gap={{ base: 6, lg: 8 }}
           align="center"
           maxWidth={{ base: "80%" }}
         >
-          <chakra.span>
+          <VStack gap={{ base: 2, lg: 1 }}>
             <Heading
-              fontSize={["2.5rem", "4rem", "4.5rem"]}
+              fontSize={{ base: "2.2rem", lg: "4rem" }}
               color={useColorModeValue("blackAlpha.900", "whiteAlpha.900")}
+              lineHeight={{ base: "120%", lg: null }}
             >
               Take notes on the go
             </Heading>
             <Text
-              fontSize={["1.2rem", "1.4rem", "1.8rem"]}
+              fontSize={["1rem", "1.4rem", "1.6rem"]}
+              maxW={{ base: "30ch", lg: "fit-content" }}
+              lineHeight={{ base: "120%", lg: "normal" }}
               color={useColorModeValue("blackAlpha.600", "whiteAlpha.500")}
             >
-              A familiar place for your thoughts to reside and flourish
+              A safehouse for your thoughts to reside and flourish
             </Text>
-          </chakra.span>
+          </VStack>
           <Button
             backgroundColor={useColorModeValue(
               "blackAlpha.900",
@@ -140,28 +149,28 @@ export const Home = () => {
       </Flex>
       <Flex
         backgroundColor={useColorModeValue("blackAlpha.900", "whiteAlpha.100")}
-        py="5rem"
-        px={[0, 0, "4rem"]}
-        pr={[0, 0, "5rem"]}
-        gap={[1, 3, 5]}
+        py={{ base: "3rem", lg: "5rem" }}
+        px={{ lg: "4rem" }}
+        pr={{ lg: "5rem" }}
+        gap={7}
         align="center"
-        flexDirection={["column", "column", "row"]}
+        flexDirection={{ base: "column", lg: "row" }}
       >
         <Image
           src={side1}
           maxWidth={["8rem", "12rem", "17rem"]}
-          m={[1, 4, 8]}
+          m={[0, 4, 8]}
         />
         <VStack
-          gap={{ base: 2, md: 4, lg: 5 }}
-          textAlign={["center", "center", "left"]}
-          maxWidth="60%"
-          ml={[0, 0, 10]}
+          gap={{ base: 3, md: 4, lg: 5 }}
+          textAlign={{ base: "center", lg: "left" }}
+          maxWidth={{ base: "80%", lg: "60%" }}
+          ml={{ lg: 10 }}
         >
           <Heading
             color="whiteAlpha.900"
             alignSelf={["center", "center", "flex-start"]}
-            fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+            fontSize={{ base: "xl", sm: "3xl", md: "4xl", lg: "5xl" }}
           >
             The Perfect Second Brain
           </Heading>
@@ -176,14 +185,14 @@ export const Home = () => {
         </VStack>
       </Flex>
       <Flex
-        p={10}
-        marginInline={["0rem", "1rem", "5rem"]}
-        my={[5, 7, "5rem"]}
+        p={{ lg: 10 }}
+        marginInline={["1.5rem", "1rem", "5rem"]}
+        my={{ base: "4rem", lg: "5rem" }}
         justify={["center", "center", "space-between"]}
         align="center"
-        gap={{ base: "2.5rem", sm: "3rem", md: "4rem", lg: "4rem" }}
+        gap={{ base: "0rem", sm: "3rem", md: "4rem", lg: "4rem" }}
       >
-        <VStack align="left" gap={{ base: 4, sm: 5, md: 7, lg: 10 }}>
+        <VStack align="left" gap={{ base: 7, lg: 10 }}>
           <SideCard
             icon={FaRegEdit}
             text="Create and modify your notes with a minimalist approach"
@@ -207,29 +216,32 @@ export const Home = () => {
           display={["none", "none", "inline"]}
         />
       </Flex>
-      <Flex width="full" justify="center" align="center" my={[5, 10, "6rem"]}>
+      <Flex
+        width="full"
+        justify="center"
+        align="center"
+        my={{ base: "5rem", lg: "6rem" }}
+      >
         <Card
           backgroundColor={useColorModeValue(
             "blackAlpha.900",
             "whiteAlpha.100"
           )}
-          maxWidth="50rem"
-          width="60%"
-          minWidth="18rem"
-          px={10}
-          py={8}
+          w="clamp(18rem, 60%, 50rem)"
+          px={{ base: 4, lg: 10 }}
+          py={{ base: 4, lg: 8 }}
           gap={[0, 4, 7]}
         >
           <VStack align="flex-start">
             <Text
-              fontSize={["1.7rem", "2rem", "2.5rem"]}
+              fontSize={["1.3rem", "2rem", "2.5rem"]}
               color={useColorModeValue("white", "whiteAlpha.900")}
             >
               Begin your journey with Noteum
             </Text>
             <Text
               color={useColorModeValue("whiteAlpha.700", "whiteAlpha.700")}
-              fontSize={["xl", "xl", "2xl"]}
+              fontSize={["1.1rem", "xl", "2xl"]}
             >
               Let's make it a notable one!
             </Text>
@@ -244,8 +256,8 @@ export const Home = () => {
               borderColor: "transparent",
             }}
             mt={9}
-            p={6}
-            fontSize="xl"
+            p={{ base: 2, lg: 6 }}
+            fontSize={{ base: "lg", lg: "xl" }}
             onClick={() => navigate("/auth/login")}
           >
             Get started
@@ -254,66 +266,47 @@ export const Home = () => {
       </Flex>
       <Flex
         justify="space-between"
-        flexDirection={["column", "column", "row"]}
-        align={["flex-start", "flex-start", "center"]}
-        p={10}
-        marginTop="8rem"
+        flexDirection={{ base: "column", lg: "row" }}
+        align={{ base: "flex-start", lg: "center" }}
+        p={{ base: 5, lg: 10 }}
+        mt={{ base: "5rem", md: "7rem" }}
         backgroundColor={useColorModeValue("blackAlpha.900", "whiteAlpha.100")}
-        gap={["1rem", "2rem", "5rem"]}
+        gap={["0.8rem", "2rem", "5rem"]}
       >
         <Heading
           color="whiteAlpha.900"
-          fontSize={{ base: "2.5rem", sm: "3rem", md: "3.5rem", lg: "4rem" }}
+          fontSize={{ base: "1.8rem", sm: "3rem", md: "3.5rem", lg: "4rem" }}
           letterSpacing="wider"
-          ml={[0, 0, 5]}
+          ml={{ lg: 5 }}
         >
           Noteum
         </Heading>
         <VStack
           mr={[1, 3, 10]}
           align={["flex-start", "flex-start", "flex-end"]}
-          gap={5}
+          gap={3}
         >
-          <Text color="whiteAlpha.800" fontSize="2xl">
+          <Text color="whiteAlpha.800" fontSize="xl">
             Akshat Sabharwal
           </Text>
-          <HStack gap={5}>
-            <Button
-              leftIcon={<SiVercel />}
-              px={[3.5, 4, 5]}
-              py={[5, 6, 7]}
-              gap={[1, 2, 2]}
-              backgroundColor="white"
-              color="blackAlpha.800"
-              _hover={{
-                backgroundColor: "whiteAlpha.800",
-              }}
-              fontSize={["1.2rem", "1.4rem", "1.6rem"]}
-              onClick={() =>
-                (window.location.href = "https://vercel.com/vicuise/noteum")
-              }
-            >
-              Vercel
-            </Button>
-            <Button
-              leftIcon={<FaGithub />}
-              px={[3.5, 4, 5]}
-              py={[5, 6, 7]}
-              gap={2}
-              backgroundColor="white"
-              color="blackAlpha.800"
-              _hover={{
-                backgroundColor: "whiteAlpha.800",
-              }}
-              fontSize={["1.2rem", "1.4rem", "1.6rem"]}
-              onClick={() =>
-                (window.location.href =
-                  "https://github.com/Akshat-Sabharwal/noteum")
-              }
-            >
-              Github
-            </Button>
-          </HStack>
+          <Button
+            leftIcon={<FaGithub />}
+            px={[3.5, 4, 5]}
+            py={[5, 6, 7]}
+            gap={2}
+            backgroundColor="white"
+            color="blackAlpha.800"
+            _hover={{
+              backgroundColor: "whiteAlpha.800",
+            }}
+            fontSize={["1.2rem", "1.4rem", "1.6rem"]}
+            onClick={() =>
+              (window.location.href =
+                "https://github.com/Akshat-Sabharwal/noteum")
+            }
+          >
+            Github
+          </Button>
         </VStack>
       </Flex>
     </chakra.div>

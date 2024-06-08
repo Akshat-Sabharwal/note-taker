@@ -5,7 +5,7 @@ export const SideCard = ({ icon, text }) => {
   return (
     <Card
       direction="row"
-      p={4}
+      p={{ base: 2, lg: 4 }}
       size="lg"
       gap={5}
       align="center"
@@ -24,9 +24,9 @@ export const SideCard = ({ icon, text }) => {
         p={3}
       />
       <Text
-        fontSize={["1rem", "1.2rem", "1.3rem"]}
+        fontSize={{ base: "0.8rem", lg: "1.3rem" }}
         mr={3}
-        color={useColorModeValue("blackAlpha.900", "whiteAlpha.900")}
+        color={useColorModeValue("blackAlpha.800", "whiteAlpha.900")}
       >
         {text}
       </Text>

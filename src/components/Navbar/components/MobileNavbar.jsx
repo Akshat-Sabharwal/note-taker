@@ -1,36 +1,57 @@
 import {
-  theme,
   useDisclosure,
   useColorModeValue,
-  useColorMode,
   Flex,
   IconButton,
-  Button,
   Drawer,
   DrawerBody,
-  DrawerOverlay,
   DrawerContent,
   DrawerHeader,
-  Text,
   Heading,
+  VStack,
+  HStack,
+  List,
+  ListItem,
+  Text,
+  Icon,
 } from "@chakra-ui/react";
 
-import {
-  IoSunnyOutline,
-  IoMoonOutline,
-  IoCreateOutline,
-  IoHomeOutline,
-} from "react-icons/io5";
-import { IoIosReturnLeft } from "react-icons/io";
-import { RiMenu5Line } from "react-icons/ri";
-
+import { RiMenuFill } from "react-icons/ri";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+const NavbarItem = ({ icon, text, onClick }) => {
+  return (
+    <ListItem
+      w="full"
+      pl={2}
+      py={1}
+      borderRadius="md"
+      _hover={{
+        backgroundColor: useColorModeValue("blackAlpha.300", "whiteAlpha.300"),
+      }}
+      cursor="pointer"
+      onClick={onClick}
+    >
+      <HStack
+        w="full"
+        h="fit-content"
+        align="center"
+        justify="flex-start"
+        gap={4}
+      >
+        <Icon as={icon} fontSize="1.5rem" h={8} />
+        <Text fontSize="1.3rem" w="full" mb="2px" mr={4}>
+          {text}
+        </Text>
+      </HStack>
+    </ListItem>
+  );
+};
+
 export const MobileNavbar = ({ navbarItems }) => {
-  const { toggleColorMode } = useColorMode(theme);
-  const navigate = useNavigate();
   const menuRef = useRef();
+  const navigate = useNavigate();
 
   const {
     isOpen: isDrawerOpen,
@@ -44,162 +65,95 @@ export const MobileNavbar = ({ navbarItems }) => {
         w="full"
         justify="space-between"
         align="center"
-        px={[4, 8, 10]}
-        pr={[2, 6, 10]}
-        py={[3, 4, 8]}
+        px={4}
+        py={2}
         backdropFilter="auto"
         backdropBlur="0.5rem"
         position="fixed"
-        boxShadow={useColorModeValue("md", "dark")}
+        boxShadow="md"
         zIndex="10"
       >
-        <Heading fontSize={["1.8rem", "2.4rem", "2.8rem"]}>Noteum</Heading>
-        <Flex justify="flex-start" align="center" gap={[1, 5, 6]}>
-          <IconButton
-            icon={useColorModeValue(<IoSunnyOutline />, <IoMoonOutline />)}
-            onClick={toggleColorMode}
-            size="lg"
-            fontSize="2.2rem"
-            variant="ghost"
-            p={1}
-            _hover={{
-              backgroundColor: useColorModeValue(
-                "blackAlpha.300",
-                "whiteAlpha.300"
-              ),
-            }}
-          />
-          <IconButton
-            icon={<RiMenu5Line />}
-            fontSize="2rem"
-            size="lg"
-            variant="ghost"
-            ref={menuRef}
-            _hover={{
-              backgroundColor: useColorModeValue(
-                "blackAlpha.300",
-                "whiteAlpha.300"
-              ),
-            }}
-            onClick={onDrawerOpen}
-          />
-        </Flex>
+        <Heading
+          fontSize="1.5rem"
+          cursor="pointer"
+          onClick={() => navigate("/")}
+        >
+          Noteum
+        </Heading>
+        <IconButton
+          icon={<RiMenuFill />}
+          fontSize="1.4rem"
+          variant="ghost"
+          ref={menuRef}
+          _hover={{
+            backgroundColor: useColorModeValue(
+              "blackAlpha.300",
+              "whiteAlpha.300"
+            ),
+          }}
+          onClick={onDrawerOpen}
+        />
         <Drawer
           isOpen={isDrawerOpen}
           onClose={onDrawerClose}
           finalFocusRef={menuRef}
           placement="right"
         >
-          <DrawerOverlay />
           <DrawerContent
-            maxWidth="17rem"
-            backgroundColor={useColorModeValue("#ffffff", "#171717")}
+            backdropFilter="blur(1rem)"
+            backgroundColor="transparent"
+            maxWidth="15rem"
             pb={3}
           >
-            <DrawerHeader fontSize="3xl" mt={-1}>
-              Noteum
-            </DrawerHeader>
+            <DrawerHeader fontSize="1.6rem">Noteum</DrawerHeader>
             <DrawerBody>
-              <Flex
-                direction="column"
-                justify="space-between"
+              <VStack
                 align="flex-start"
-                width="full"
-                height="full"
-                pt={2}
-                gap={10}
+                justify="space-between"
+                gap="5rem"
+                pt={1}
+                h="full"
               >
-                <Flex
-                  direction="column"
-                  justify="space-evenly"
-                  align="flex-start"
-                  gap={3}
-                >
-                  <Button
-                    leftIcon={<IoCreateOutline />}
-                    onClick={() => {
-                      onModalOpen();
-                      onDrawerClose();
-                    }}
-                    size="lg"
-                    fontSize="2rem"
-                    pl={2}
-                    gap="0.5rem"
-                    width="full"
-                    justifyContent="flex-start"
-                    variant="ghost"
-                    _hover={{
-                      backgroundColor: useColorModeValue(
-                        "blackAlpha.300",
-                        "whiteAlpha.300"
-                      ),
-                    }}
+                <List w="full">
+                  <VStack
+                    w="full"
+                    gap={3}
+                    align="flex-start"
+                    justify="flex-start"
                   >
-                    <Text fontSize="1.35rem">Create Note</Text>
-                  </Button>
-                  <Button
-                    leftIcon={<IoHomeOutline />}
-                    onClick={() => navigate("/")}
-                    size="lg"
-                    fontSize="1.8rem"
-                    pl={2}
-                    gap="0.7rem"
-                    width="full"
-                    justifyContent="flex-start"
-                    variant="ghost"
-                    _hover={{
-                      backgroundColor: useColorModeValue(
-                        "blackAlpha.300",
-                        "whiteAlpha.300"
-                      ),
-                    }}
+                    {navbarItems.slice(0, 3).map((item) => (
+                      <NavbarItem
+                        key={item.text}
+                        icon={item.icon}
+                        text={item.text}
+                        onClick={item.onClick}
+                      />
+                    ))}
+                  </VStack>
+                </List>
+                <List w="full">
+                  <VStack
+                    w="full"
+                    gap={2}
+                    align="flex-start"
+                    justify="flex-start"
                   >
-                    <Text fontSize="1.35rem">Home</Text>
-                  </Button>
-                  <Button
-                    leftIcon={<IoIosReturnLeft />}
-                    onClick={() => navigate(-1)}
-                    size="lg"
-                    fontSize="2rem"
-                    pl={2}
-                    gap="0.5rem"
-                    width="full"
-                    justifyContent="flex-start"
-                    variant="ghost"
-                    _hover={{
-                      backgroundColor: useColorModeValue(
-                        "blackAlpha.300",
-                        "whiteAlpha.300"
-                      ),
-                    }}
-                  >
-                    <Text fontSize="1.35rem">Return</Text>
-                  </Button>
-                </Flex>
-
-                <Button
-                  leftIcon={useColorModeValue(
-                    <IoSunnyOutline />,
-                    <IoMoonOutline />
-                  )}
-                  onClick={toggleColorMode}
-                  size="lg"
-                  fontSize="1.9rem"
-                  pl={2}
-                  gap="0.5rem"
-                  width="full"
-                  justifyContent="flex-start"
-                  variant="ghost"
-                  _hover={{
-                    backgroundColor: useColorModeValue(
-                      "blackAlpha.300",
-                      "whiteAlpha.300"
-                    ),
-                  }}
-                >
-                  <Text fontSize="1.35rem">Switch Theme</Text>
-                </Button>
-              </Flex>
+                    <NavbarItem
+                      text={navbarItems[3].text}
+                      icon={useColorModeValue(
+                        navbarItems[3].icon[0],
+                        navbarItems[3].icon[1]
+                      )}
+                      onClick={navbarItems[3].onClick}
+                    />
+                    <NavbarItem
+                      text={navbarItems[4].text}
+                      icon={navbarItems[4].icon}
+                      onClick={navbarItems[4].onClick}
+                    />
+                  </VStack>
+                </List>
+              </VStack>
             </DrawerBody>
           </DrawerContent>
         </Drawer>

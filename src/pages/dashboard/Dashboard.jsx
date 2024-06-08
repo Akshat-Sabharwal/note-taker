@@ -5,6 +5,7 @@ import {
   chakra,
   useBreakpointValue,
   HStack,
+  VStack,
 } from "@chakra-ui/react";
 import { useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import { NoteModal } from "./components/NoteModal";
@@ -18,37 +19,32 @@ import { AuthError } from "../error/AuthError";
 
 const MobileDashboard = ({ notes, buffer, onOpen }) => {
   return (
-    <>
-      <Flex
-        width="full"
-        align="flex-start"
-        justify="space-between"
-        direction="column"
-        gap="1.5rem"
-        px="1.2rem"
-        py={7}
-        pt={1}
-        mt="6rem"
-      >
-        <Heading fontSize="2rem">Recents</Heading>
-      </Flex>
-      <Flex
+    <VStack
+      w="full"
+      align="flex-start"
+      justify="flex-start"
+      px="1.2rem"
+      mt="5rem"
+      mb="6rem"
+      gap={7}
+    >
+      <Heading fontSize="1.7rem">Recents</Heading>
+      <VStack
         wrap="wrap"
         justify="flex-start"
-        align="center"
+        align="flex-start"
         w="full"
-        mb={10}
-        mx={10}
-        gap="1.5rem"
+        gap="2rem"
       >
         {buffer ? (
-          <HStack gap={10}>
+          <VStack w="full" align="center" gap="2rem">
             <NoteModalSkeleton />
             <NoteModalSkeleton />
             <NoteModalSkeleton />
-          </HStack>
+          </VStack>
         ) : (
           <>
+            <AddNote onOpen={onOpen} />
             {notes.map((item) => (
               <NoteModal
                 key={item.slug}
@@ -58,12 +54,10 @@ const MobileDashboard = ({ notes, buffer, onOpen }) => {
                 slug={item.slug}
               />
             ))}
-
-            <AddNote onOpen={onOpen} />
           </>
         )}
-      </Flex>
-    </>
+      </VStack>
+    </VStack>
   );
 };
 

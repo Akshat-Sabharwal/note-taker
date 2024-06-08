@@ -12,7 +12,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  useBreakpointValue,
   HStack,
   useToast,
   Spinner,
@@ -23,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 import { fetchResponse } from "../../../utils/fetchResponse";
 import { Notes } from "../../../context/notes";
 import { RenameModal } from "./RenameModal";
-import { NoteModalSkeleton } from "./NoteModalSkeleton";
 
 export const NoteModal = ({ title, description, tags, slug }) => {
   const toast = useToast({ duration: 3000, isClosable: true });
@@ -62,15 +60,15 @@ export const NoteModal = ({ title, description, tags, slug }) => {
         onClose={onClose}
       />
       <Card
-        pl={7}
+        pl={{ base: 5, lg: 7 }}
         pr={4}
-        pt={5}
-        pb={6}
-        gap={2}
+        pt={{ base: 4, lg: 5 }}
+        pb={{ base: 5, lg: 6 }}
+        gap={{ base: 1, lg: 2 }}
+        h={{ base: "fit-content", lg: "10rem" }}
+        w="clamp(12rem, 100%, 20rem)"
         boxShadow="md"
         backgroundColor={useColorModeValue("white", "whiteAlpha.200")}
-        width={["21rem", "minmax(20rem, 35rem)", "fit-content"]}
-        minWidth={{ lg: "22.5rem" }}
       >
         {buffer ? (
           <Spinner />
@@ -107,8 +105,7 @@ export const NoteModal = ({ title, description, tags, slug }) => {
                     key={tag}
                     width="fit-content"
                     px={2}
-                    py={1}
-                    pb={2}
+                    py={1.5}
                     fontSize="1rem"
                     backgroundColor={useColorModeValue(
                       "blackAlpha.800",
@@ -125,9 +122,7 @@ export const NoteModal = ({ title, description, tags, slug }) => {
               <MenuButton
                 as={IconButton}
                 icon={<FaEllipsisVertical />}
-                p={3}
-                maxWidth="3rem"
-                size="lg"
+                size="md"
                 fontSize="1.7rem"
                 variant="ghost"
                 _hover={{

@@ -11,15 +11,17 @@ import {
   Heading,
   Divider,
   useToast,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { fetchResponse } from "../../utils/fetchResponse";
 import { User } from "../../context/user";
 
 export const Login = () => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
   const toast = useToast({ duration: 2000, isClosable: true });
   const navigate = useNavigate();
   const [buffer, setBuffer] = useState(false);
@@ -77,44 +79,55 @@ export const Login = () => {
   return (
     <>
       <Flex
-        justifyContent="center"
-        alignItems="center"
+        justify="center"
+        align={{ base: "flex-start", lg: "center" }}
         w="full"
         h="100vh"
         bgColor={useColorModeValue("white", "blackAlpha.700")}
       >
-        <HStack w="70%" gap="7rem">
+        <Flex
+          flexDirection={{ base: "column", lg: "row" }}
+          justify={{ base: "flex-start", lg: "center" }}
+          align="center"
+          w={{ base: "90%", lg: "70%" }}
+          gap={{ base: "2.5rem", lg: "7rem" }}
+          mt={{ base: "2.5rem", lg: null }}
+        >
           <Heading
             textAlign="center"
             color={useColorModeValue("blackAlpha.800", "whiteAlpha.900")}
-            fontSize="3rem"
-            maxW="30rem"
-            mr="-3rem"
+            fontSize={{ base: "2rem", lg: "3rem" }}
+            maxW={{ base: "20ch", lg: "30rem" }}
           >
             Login with your Noteum account
           </Heading>
-          <Divider
-            orientation="vertical"
-            h="40vh"
-            borderColor={useColorModeValue("blackAlpha.300", "whiteAlpha.400")}
-          />
-          <VStack w="33%" gap={5}>
+          {!isMobile && (
+            <Divider
+              orientation="vertical"
+              h="40vh"
+              borderColor={useColorModeValue(
+                "blackAlpha.300",
+                "whiteAlpha.400"
+              )}
+            />
+          )}
+          <VStack w={{ base: "90%", lg: "33%" }} gap={5}>
             <Card
-              p={8}
+              p={{ base: 5, lg: 8 }}
               w="full"
               borderRadius="md"
               boxShadow="md"
               bgColor={useColorModeValue("white", "whiteAlpha.100")}
             >
               <VStack gap="2.25rem">
-                <VStack gap="1.5rem" w="full">
+                <VStack gap={{ base: "1.3rem", lg: "1.5rem" }} w="full">
                   <FormControl isInvalid={isInvalid.email}>
                     <Input
                       type="text"
                       placeholder="E-mail"
-                      fontSize="1.1rem"
-                      py={5}
-                      px={4}
+                      fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                      py={{ base: 3, lg: 5 }}
+                      px={{ base: 3, lg: 4 }}
                       maxLength={40}
                       value={formData.email}
                       onChange={(e) => {
@@ -144,9 +157,9 @@ export const Login = () => {
                       <Input
                         type="password"
                         placeholder="Password"
-                        fontSize="1.1rem"
-                        py={5}
-                        px={4}
+                        fontSize={{ base: "0.9rem", lg: "1.1rem" }}
+                        py={{ base: 3, lg: 5 }}
+                        px={{ base: 3, lg: 4 }}
                         value={formData.password}
                         onChange={(e) => {
                           setFormData({
@@ -215,13 +228,13 @@ export const Login = () => {
             <Button
               rightIcon={<ArrowForwardIcon />}
               variant="link"
-              fontSize="1.1rem"
+              fontSize={{ base: "0.9rem", lg: "1.1rem" }}
               onClick={() => navigate("/auth/signup")}
             >
               New to Noteum? Sign up here
             </Button>
           </VStack>
-        </HStack>
+        </Flex>
       </Flex>
     </>
   );

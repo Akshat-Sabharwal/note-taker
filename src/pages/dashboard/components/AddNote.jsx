@@ -6,8 +6,8 @@ export const AddNote = ({ onOpen }) => {
     <Box
       border="2px dashed"
       borderColor={useColorModeValue("blackAlpha.300", "whiteAlpha.300")}
-      h="10rem"
-      w="20rem"
+      h={{ base: "9rem", lg: "10rem" }}
+      w="clamp(12rem, 100%, 20rem)"
       borderRadius="md"
       display="flex"
       justifyContent="center"
